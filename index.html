@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antigravity Typing | Deep Space Speed Test</title>
+    <meta name="description" content="A visually stunning, gravity-defying typing speed test app. Type the words as they float upwards to preserve your shield and unlock custom achievements.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        <!-- High-performance gameplay canvas -->
+        <canvas id="game-canvas"></canvas>
+
+        <!-- Glassmorphism screen overlays -->
+        <div id="ui-overlay">
+            
+            <!-- 1. START MENU SCREEN -->
+            <div id="menu-screen" class="screen active">
+                <div class="logo-container animate-pulse-glow">
+                    <span class="logo-sub">DEEP SPACE</span>
+                    <h1 class="logo-main">ANTIGRAVITY</h1>
+                    <span class="logo-tag">TYPING SPEED TEST</span>
+                </div>
+                
+                <div class="glass-card instruction-card">
+                    <h3>MISSION DIRECTIVES</h3>
+                    <ul>
+                        <li><span class="highlight">Floating Words</span> spawn at the bottom and drift upwards against gravity.</li>
+                        <li><span class="highlight">Type the words</span> exactly as shown before they float off the top edge of the screen.</li>
+                        <li>Press <kbd>Space</kbd> or <kbd>Enter</kbd> to detonate typed words with a particle blast.</li>
+                        <li>Escaped words will damage your <span class="warning">Shield Integrity</span> (-10% each).</li>
+                        <li>Survive the 60-second limit and achieve maximum flight velocity (WPM).</li>
+                    </ul>
+                </div>
+
+                <div class="menu-actions">
+                    <button id="btn-start" class="btn btn-primary btn-glow">LAUNCH MISSION</button>
+                    <button id="btn-easter-menu" class="btn btn-secondary">GRAVITY OVERRIDE ☄️</button>
+                </div>
+            </div>
+
+            <!-- 2. GAMEPLAY HUD SCREEN -->
+            <div id="game-screen" class="screen">
+                <div class="hud-bar">
+                    <div class="hud-item glass-card" id="hud-timer">
+                        <span class="hud-label">TIME REMAINING</span>
+                        <span class="hud-val digits" id="val-timer">60s</span>
+                    </div>
+
+                    <div class="hud-item glass-card" id="hud-wpm">
+                        <span class="hud-label">REAL-TIME WPM</span>
+                        <span class="hud-val digits highlight" id="val-wpm">0</span>
+                    </div>
+
+                    <div class="hud-item glass-card" id="hud-accuracy">
+                        <span class="hud-label">ACCURACY</span>
+                        <span class="hud-val digits" id="val-accuracy">100%</span>
+                    </div>
+
+                    <div class="hud-item glass-card hud-integrity-container">
+                        <div class="hud-label-row">
+                            <span class="hud-label">SHIELD INTEGRITY</span>
+                            <span class="hud-val digits warning" id="val-integrity">100%</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill animate-pulse-integrity" id="integrity-bar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Immersive visual typing feedback area (Floating bottom center) -->
+                <div class="typing-console glass-card">
+                    <div class="console-label">ACTIVE TRANSMISSION INPUT</div>
+                    <div class="input-display-wrapper">
+                        <span id="input-buffer" class="input-buffer"></span>
+                        <span class="cursor">|</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. GAME OVER SCORE SCREEN -->
+            <div id="gameover-screen" class="screen">
+                <div class="gameover-header">
+                    <h2 id="gameover-title" class="warning">MISSION TERMINATED</h2>
+                    <p id="gameover-sub">Your shield integrity collapsed or time expired in deep space.</p>
+                </div>
+
+                <div class="glass-card stats-summary-card">
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <span class="stat-label">AVERAGE SPEED</span>
+                            <span class="stat-value digits highlight" id="final-wpm">0</span>
+                            <span class="stat-unit">WORDS / MIN</span>
+                        </div>
+                        
+                        <div class="stat-box">
+                            <span class="stat-label">TYPING ACCURACY</span>
+                            <span class="stat-value digits" id="final-accuracy">100%</span>
+                            <span class="stat-unit">SUCCESSFUL KEYS</span>
+                        </div>
+
+                        <div class="stat-box">
+                            <span class="stat-label">WORDS DETONATED</span>
+                            <span class="stat-value digits" id="final-words">0</span>
+                            <span class="stat-unit">COMPLETED WORDS</span>
+                        </div>
+
+                        <div class="stat-box">
+                            <span class="stat-label">SHIELD RETENTION</span>
+                            <span class="stat-value digits" id="final-integrity">100%</span>
+                            <span class="stat-unit">SURVIVAL BONUS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-actions">
+                    <button id="btn-restart" class="btn btn-primary btn-glow">RE-INITIALIZE DRIVE</button>
+                    <button id="btn-home" class="btn btn-secondary">RETURN TO DEPLOYMENT</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Dynamic floating Easter Egg toggle lever on the bottom-right corner -->
+        <div id="easter-egg-widget" title="Python 'import antigravity' Override">
+            <button id="btn-gravity-lever" class="lever-btn">
+                <span class="lever-icon">🛸</span>
+                <span class="lever-text">GRAVITY OFF</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Core Javascript Code -->
+    <script src="app.js"></script>
+</body>
+</html>
